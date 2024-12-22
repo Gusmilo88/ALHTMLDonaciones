@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Donaciones</title>
+    <!-- Tailwind y estilos -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'input-lights': 'rgba(255, 255, 255, 0.1)'
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-gradient-to-r from-gray-900 to-gray-800 min-h-screen p-4">
+    <div class="container mx-auto max-w-4xl">
+        <div id="donationForm" class="bg-gradient-to-r from-gray-800 to-gray-700 p-6 rounded-lg shadow-xl">
+            <div id="donationAmountSection"></div>
+            <div id="paymentMethodSection" class="mt-8"></div>
+            <div id="bankTransferInfoSection"></div>
+            <div id="securityInfoSection" class="mt-4"></div>
+        </div>
+    </div>
+
+    <!-- Components -->
+    <script src="js/components/DonationAmount.js"></script>
+    <script src="js/components/PaymentMethod.js"></script>
+    <script src="js/app.js"></script>
+</body>
+
+<!-- Agregar los scripts al final del body -->
+<script src="js/components/BankTransferInfo.js"></script>
+<script src="js/components/SecurityInfo.js"></script>
+</html>
