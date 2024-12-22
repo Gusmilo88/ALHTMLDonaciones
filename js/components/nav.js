@@ -1,10 +1,9 @@
 class Nav {
     constructor() {
         this.menuItems = [
-            { text: 'Inicio', href: '/', icon: '🎄', isExternal: false },
-            { text: 'Cursos Veganos', href: 'https://cursosveganos.com/', icon: '🎁', isExternal: true },
-            { text: 'Investigaciones', href: 'https://traslacarne.com/', icon: '⭐', isExternal: true },
-            { text: 'Contacto', href: '/#', icon: '🔔', isExternal: false }
+            { text: 'Inicio', href: 'https://animallibre.org/', icon: '<img src="/assets/ico.png" alt="Icono" class="w-6 h-6 object-contain">', isExternal: false },            // { text: 'Cursos Veganos', href: 'https://cursosveganos.com/', icon: '🎁', isExternal: true },
+            // { text: 'Investigaciones', href: 'https://traslacarne.com/', icon: '⭐', isExternal: true },
+            // { text: 'Contacto', href: '/#', icon: '🔔', isExternal: false }
         ];
         this.isOpen = false;
         this.render();
@@ -188,6 +187,8 @@ class Nav {
             }
 
             link.innerHTML = `
+             <span class="flex items-center gap-2">
+             ${item.icon}
                 ${item.text}
                 <div class="garland-container absolute -bottom-4 left-0 w-full h-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <div class="garland-lights">

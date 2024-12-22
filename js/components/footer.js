@@ -1,10 +1,9 @@
 class Footer {
     constructor() {
         this.menuItems = [
-            { text: 'Inicio', href: '/', icon: '🎄', isExternal: false },
-            { text: 'Cursos Veganos', href: 'https://cursosveganos.com/', icon: '🎁', isExternal: true },
-            { text: 'Investigaciones', href: 'https://traslacarne.com/', icon: '⭐', isExternal: true },
-            { text: 'Contacto', href: '/#', icon: '🔔', isExternal: false }
+            { text: 'Inicio', href: 'https://animallibre.org/', icon: '<img src="/assets/ico.png" alt="Icono" class="w-6 h-6">', isExternal: false },            // { text: 'Cursos Veganos', href: 'https://cursosveganos.com/', icon: '🎁', isExternal: true },
+            // { text: 'Investigaciones', href: 'https://traslacarne.com/', icon: '⭐', isExternal: true },
+            // { text: 'Contacto', href: '/#', icon: '🔔', isExternal: false }
         ];
 
         this.socialLinks = [
@@ -89,7 +88,8 @@ class Footer {
                 link.target = "_blank";
                 link.rel = "noopener noreferrer";
             }
-            link.innerHTML = `<span>${item.icon} ${item.text}</span>`;
+            link.innerHTML = `<span class="flex items-center gap-2">
+                    ${item.icon} ${item.text}</span>`;
             menuContainer.appendChild(link);
         });
     }
