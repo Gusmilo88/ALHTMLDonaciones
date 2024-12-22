@@ -1,4 +1,3 @@
-// js/components/PaymentMethod.js
 class PaymentMethod {
     constructor(containerId) {
         this.container = document.getElementById(containerId);
@@ -11,25 +10,25 @@ class PaymentMethod {
         this.paymentMethods = [
             { 
                 id: 'mercadopago', 
-                label: `<div class="h-32 w-32 relative">
+                label: `<div class="h-10 relative">
                     <img src="/assets/mercadoPagoLogo.svg" alt="MercadoPago" class="object-contain w-full h-full" />
                 </div>` 
             },
             { 
                 id: 'paypal', 
-                label: `<div class="h-32 w-32 relative">
+                label: `<div class="h-10 relative">
                     <img src="/assets/paypal.png" alt="PayPal" class="object-contain w-full h-full" />
                 </div>` 
             },
             { 
                 id: 'transferencia', 
-                label: `<div class="h-12 w-12 relative">
+                label: `<div class="h-10 relative">
                     <img src="/assets/transferenciaBancaria.png" alt="Transferencia Bancaria" class="object-contain w-full h-full" />
                 </div>` 
             },
             { 
                 id: 'webpay', 
-                label: `<div class="h-24 w-24 relative">
+                label: `<div class="h-10 relative">
                     <img src="/assets/webPay.png" alt="WebPay" class="object-contain w-full h-full" />
                 </div>` 
             }

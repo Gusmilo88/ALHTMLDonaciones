@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dona con WebPay</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .spinner {
+            width: 48px;
+            height: 48px;
+            border: 4px solid #f40028;
+            border-top: 4px solid transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col bg-white">
+    <!-- Nav Component -->
+    <div id="nav-container"></div>
+
+    <!-- Main Content -->
+    <div class="flex-1 flex flex-col items-center justify-center p-4">
+        <div class="text-center space-y-6">
+            <h1 class="text-xl md:text-2xl font-medium text-gray-800 mb-4">
+                En instantes serás redireccionado a WebPay para realizar la donación de una forma segura ❤️
+            </h1>
+            
+            <div id="amount-display" class="text-lg text-gray-600"></div>
+            
+            <!-- Spinner -->
+            <div class="inline-block">
+                <div class="spinner"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Component -->
+    <div id="footer-container"></div>
+
+    <!-- Scripts -->
+    <script src="../js/nav.js"></script>
+    <script src="../js/footer.js"></script>
+    <script>
+        class WebPayPage {
+            constructor() {
+                this.init();
+            }
+
+            displayAmount() {
+                const params = new URLSearchParams(window.location.search);
+                const amount = params.get('amount');
+                
+                if (amount) {
+                    const amountDisplay = document.getElementById('amount-display');
+                    amountDisplay.textContent = `Monto a donar: $${amount}`;
+                }
+            }
+
+            redirectToWebPay() {
+                setTimeout(() => {
+                    window.open('https://www.darcontarjeta.cl/portalpagodirecto/pages/institucion.jsf?idEstablecimiento=27434105', '_blank');
+                    window.location.href = '../index.html'; // Regresa al home en la pestaña original
+                    localStorage.removeItem('donationFlow');
+                }, 3000);
+            }
+
+            init() {
+                this.displayAmount();
+                this.redirectToWebPay();
+            }
+        }
+
+        // Inicializar cuando el DOM esté listo
+        document.addEventListener('DOMContentLoaded', () => {
+            new WebPayPage();
+        });
+    </script>
+</body>
+</html>

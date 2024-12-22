@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dona con PayPal</title>
+    <!-- Tailwind y estilos -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- PayPal SDK -->
+    <script src="https://www.paypal.com/sdk/js?client-id=AXnom8CYer47l5of4TqSjyMGL50zQgG-FzaF6qGe_n6xBWFmpEZQyCLjdO6AD0S-vdFVYdnrh7Z8ahrd&currency=USD"></script>
+    <style>
+        .loading-spinner {
+            width: 48px;
+            height: 48px;
+            border: 4px solid #f40028;
+            border-top: 4px solid transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        #paypal-button-container {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col bg-white">
+    <!-- Nav Component -->
+    <div id="nav-container"></div>
+
+    <!-- Main Content -->
+    <div class="flex-1 flex flex-col items-center justify-center p-4">
+        <div id="loader" class="flex-1 flex items-center justify-center hidden">
+            <div class="loading-spinner"></div>
+        </div>
+
+        <div id="mainContent" class="text-center space-y-6">
+            <h1 class="text-xl md:text-2xl font-medium text-gray-800 mb-4">
+                Realiza tu donación de forma segura con PayPal
+            </h1>
+            
+            <div id="amount-display" class="text-lg text-gray-600"></div>
+            
+            <div id="error-container" class="hidden text-red-500 p-4 border border-red-500 rounded"></div>
+            
+            <div class="max-w-md mx-auto w-full">
+                <div id="paypal-button-container"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Component -->
+    <div id="footer-container"></div>
+
+    <!-- Scripts -->
+    <script src="../js/components/nav.js"></script>
+    <script src="../js/components/footer.js"></script>
+    <script>
+        class PayPalPage {
+            constructor() {
+                this.params = new URLSearchParams(window.location.search);
+                this.amount = this.params.get('amount');
+                this.init();
+            }
+
+            showError(message) {
+                const errorContainer = document.getElementById('error-container');
+                errorContainer.textContent = message;
+                errorContainer.classList.remove('hidden');
+            }
+
+            validateAmount() {
+                if (!this.amount) {
+                    this.showError('No se ha especificado un monto para la donación');
+                    return false;
+                }
+
+                const numericAmount = parseFloat(this.amount);
+                if (isNaN(numericAmount) || numericAmount <= 0) {
+                    this.showError('El monto especificado no es válido');
+                    return false;
+                }
+
+                return true;
+            }
+
+            displayAmount() {
+                if (this.validateAmount()) {
+                    const amountDisplay = document.getElementById('amount-display');
+                    amountDisplay.textContent = `Monto a donar: $${parseFloat(this.amount).toFixed(2)} USD`;
+                }
+            }
+
+            initPayPalButton() {
+                if (!this.validateAmount()) return;
+
+                paypal.Buttons({
+                    style: {
+                        layout: 'vertical',
+                        color: 'blue',
+                        shape: 'rect',
+                        label: 'donate',
+                        height: 55
+                    },
+                    createOrder: (data, actions) => {
+                        return actions.order.create({
+                            intent: "CAPTURE",
+                            purchase_units: [{
+                                amount: {
+                                    currency_code: "USD",
+                                    value: parseFloat(this.amount).toFixed(2)
+                                },
+                                description: "Donación"
+                            }],
+                            application_context: {
+                                shipping_preference: "NO_SHIPPING"
+                            }
+                        });
+                    },
+                    onApprove: async (data, actions) => {
+                        try {
+                            const order = await actions.order.capture();
+                            console.log('Donación exitosa:', order);
+                            localStorage.setItem('donacionExitosa', 'true');
+                            localStorage.setItem('orderID', order.id);
+                            alert('¡Gracias por tu donación!');
+                            window.location.href = '../index.html';  // Redirige al home
+                        } catch (error) {
+                            console.error('Error al capturar la orden:', error);
+                            alert('Hubo un error al procesar la donación');
+                        }
+                    },
+                    onError: (err) => {
+                        console.error('Error en PayPal:', err);
+                        alert('Hubo un error al procesar el pago. Por favor, intenta nuevamente.');
+                    },
+                    onCancel: () => {
+                        console.log('Operación cancelada por el usuario');
+                        <!-- alert('Has cancelado la operación'); -->
+                    }
+                }).render('#paypal-button-container');
+            }
+
+            init() {
+                this.displayAmount();
+                this.initPayPalButton();
+            }
+        }
+
+        // Inicializar cuando el DOM esté listo
+        document.addEventListener('DOMContentLoaded', () => {
+            new PayPalPage();
+        });
+    </script>
+</body>
+</html>

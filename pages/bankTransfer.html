@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Información de Transferencia Bancaria</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body class="bg-gray-50">
+    <!-- Nav Component -->
+    <div id="nav-container"></div>
+
+    <div class="flex flex-col min-h-screen">
+        <div class="container mx-auto px-4 py-12 font-sans flex-grow">
+            <h1 class="text-4xl font-bold mb-8 text-center text-gray-900">
+                Información de Transferencia Bancaria
+            </h1>
+            
+            <div id="amount-display"></div>
+
+            <div class="max-w-2xl mx-auto bg-white rounded-xl shadow-sm border border-gray-200">
+                <div class="p-8 space-y-6">
+                    <!-- Los items de información se agregarán dinámicamente -->
+                </div>
+            </div>
+
+            <div class="mt-12 text-center">
+                <p class="text-lg text-gray-600 max-w-xl mx-auto">
+                    ¡Gracias por tu apoyo! Cada aporte nos ayuda a seguir adelante con nuestra misión.
+                </p>
+            </div>
+        </div>
+
+        <!-- Footer Component -->
+        <div id="footer-container"></div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../js/components/nav.js"></script>
+    <script src="../js/components/footer.js"></script>
+    <script src="../js/pages/bankTransfer.js"></script>
+</body>
+</html>

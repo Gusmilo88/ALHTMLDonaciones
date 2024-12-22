@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dona con MercadoPago</title>
+    <!-- Tailwind y estilos -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="min-h-screen bg-gradient-to-b from-gray-50 to-white">
+    <!-- Nav Component -->
+    <div id="nav-container"></div>
+    
+    <div class="container mx-auto px-4 py-12 font-sans">
+        <!-- Banner Image -->
+        <div class="flex justify-center mb-8">
+            <div class="w-24 h-24 bg-blue-100 rounded-full flex items-center justify-center">
+                <i class="fas fa-heart text-red-500 text-4xl"></i>
+            </div>
+        </div>
+
+        <h1 class="text-5xl font-bold mb-8 text-center text-gray-900 font-montserrat">
+            Dona con MercadoPago
+        </h1>
+
+        <div class="max-w-3xl mx-auto p-8 bg-white rounded-2xl shadow-xl border border-gray-200">
+            <div class="text-center mb-12">
+                <p class="text-xl text-gray-700 mb-4 font-roboto">
+                    Tu donación nos ayuda a seguir adelante con nuestra misión.
+                    Elige el monto que desees donar a través de MercadoPago.
+                </p>
+                <p class="text-lg text-gray-600 font-roboto">
+                    <span class="flex items-center justify-center gap-2">
+                        🔒 Al hacer clic en cualquiera de los botones, serás redirigido a una página segura de MercadoPago 
+                        para completar tu donación.
+                    </span>
+                </p>
+            </div>
+
+            <div id="donations-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Los botones de donación se agregarán dinámicamente -->
+            </div>
+        </div>
+
+        <!-- Notificación de agradecimiento (inicialmente oculta) -->
+        <div id="thank-you-message" class="fixed bottom-8 right-8 bg-green-500 text-white p-4 rounded-lg shadow-lg transition-opacity duration-500 opacity-0 pointer-events-none">
+            <span class="flex items-center gap-2">
+                ¡Gracias por apoyar nuestra misión! 🙏❤️
+            </span>
+        </div>
+    </div>
+
+    <!-- Footer Component -->
+    <div id="footer-container"></div>
+
+    <!-- Scripts -->
+    <script src="../js/components/nav.js"></script>
+    <script src="../js/components/footer.js"></script>
+    <script src="../js/pages/mercadoPago.js"></script>
+</body>
+</html>

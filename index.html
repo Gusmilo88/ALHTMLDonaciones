@@ -17,26 +17,251 @@
             }
         }
     </script>
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
-<body class="bg-gradient-to-r from-gray-900 to-gray-800 min-h-screen p-4">
-    <div class="container mx-auto max-w-4xl">
-        <div id="donationForm" class="bg-gradient-to-r from-gray-800 to-gray-700 p-6 rounded-lg shadow-xl">
-            <div id="donationAmountSection"></div>
-            <div id="paymentMethodSection" class="mt-8"></div>
-            <div id="bankTransferInfoSection"></div>
-            <div id="securityInfoSection" class="mt-4"></div>
+<body class="min-h-screen">
+    <!-- Nav Component -->
+    <div id="nav-container" class="relative z-20 bg-white"></div>
+
+    <!-- Main Content with Background -->
+    <main class="relative">
+        <!-- Background Image Container -->
+        <div class="absolute inset-0 z-0">
+            <img src="assets/fondo4.jpg" alt="Fondo" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-black/50"></div>
+        </div>
+
+        <!-- Content Section -->
+        <div class="relative z-10">
+            <!-- Progress Bar Component -->
+<div class="container mx-auto max-w-4xl pt-8">
+    <div id="donationProgressContainer" class="w-full bg-black/30 rounded-lg shadow p-6">
+        <div class="text-center">
+            <div class="mb-6 flex justify-center"></div>
+            <h2 class="text-2xl font-bold mb-4 text-white text-shadow-dark">Meta de Donaciones</h2>
+            <p class="text-4xl font-bold mb-2 text-green-600" id="currentAmount">$ 15.00</p>
+            <p class="text-white text-shadow-dark mb-4">
+                recaudado de <span class="font-semibold text-green-600" id="goalAmount">$ 1,000.00</span>
+            </p>
+            <div class="relative flex items-center gap-4">
+                <div class="flex-grow h-4 bg-gray-200 rounded-full overflow-hidden">
+                    <div id="progressBar" class="h-full rounded-full transition-all duration-500 ease-out"
+                        style="width: 1.5%; background: linear-gradient(90deg, rgba(244,0,40,1) 0%, rgba(144,11,31,1) 100%);">
+                    </div>
+                </div>
+                <div class="animate-gift">
+                    <img src="assets/regalo.png" alt="Regalo de Navidad" class="w-24 h-24 object-contain" />
+                </div>
+            </div>
+            <p class="text-sm text-white text-shadow-dark mt-2" id="progressPercentage">1.5% completado</p>
         </div>
     </div>
+</div>
 
-    <!-- Components -->
-    <script src="js/components/DonationAmount.js"></script>
-    <script src="js/components/PaymentMethod.js"></script>
-    <script src="js/app.js"></script>
+            <!-- Main Form -->
+            <div class="container mx-auto max-w-4xl py-8">
+                <div id="donationForm" class="bg-black/30 p-6 rounded-lg shadow-xl backdrop-blur-sm">
+                    <!-- Título -->
+                    <h1 class="text-4xl font-bold text-white text-center mb-8">Realizar una Donación</h1>
+                    
+                    <!-- Nombre -->
+                    <div class="mb-4">
+                        <label class="flex items-center gap-2 text-white mb-2">
+                            <i class="fas fa-user"></i>
+                            Ingresa tu nombre *
+                        </label>
+                        <input type="text" id="nameInput" placeholder="Nombre" 
+                            class="w-full p-3 rounded-lg bg-white/90 text-black">
+                    </div>
+
+                    <!-- Email -->
+                    <div class="mb-4">
+                        <label class="flex items-center gap-2 text-white mb-2">
+                            <i class="fas fa-envelope"></i>
+                            Ingresa tu email *
+                        </label>
+                        <input type="email" id="emailInput" placeholder="ejemplo@correo.com" 
+                            class="w-full p-3 rounded-lg bg-white/90 text-black">
+                    </div>
+
+                    <!-- Monto -->
+                    <div class="mb-6">
+                        <label class="flex items-center gap-2 text-white mb-2">
+                            <i class="fas fa-dollar-sign"></i>
+                            Monto personalizado *
+                        </label>
+                        <input type="number" id="amountInput" placeholder="Ingresa el monto" 
+                            class="w-full p-3 rounded-lg bg-white/90 text-black">
+                    </div>
+
+                    <!-- Métodos de pago -->
+                    <div class="mb-4">
+                        <label class="flex items-center gap-2 text-white mb-4">
+                            <i class="fas fa-credit-card"></i>
+                            Método de pago
+                        </label>
+                        <div class="grid grid-cols-4 gap-4">
+                            <button class="payment-method bg-white p-2 rounded-lg" data-payment-type="mercadopago">
+                                <img src="assets/mercadoPagoLogo.svg" alt="Mercado Pago" class="h-20 object-contain mx-auto">
+                            </button>
+                            <button class="payment-method bg-white p-2 rounded-lg" data-payment-type="paypal">
+                                <img src="assets/paypal.png" alt="PayPal" class="h-20 object-contain mx-auto">
+                            </button>
+                            <button class="payment-method bg-white p-2 rounded-lg" data-payment-type="bank-transfer">
+                                <img src="assets/transferenciaBancaria.png" alt="Transferencia Bancaria" class="h-20 object-contain mx-auto">
+                            </button>
+                            <button class="payment-method bg-white p-2 rounded-lg" data-payment-type="webpay">
+                                <img src="assets/webPay.png" alt="WebPay" class="h-20 object-contain mx-auto">
+                            </button>
+                        </div>
+                    </div>
+
+                    <p class="text-red-500 text-center mt-4" id="errorMessage">
+                        Por favor, complete todos los campos requeridos antes de seleccionar un método de pago
+                    </p>
+
+                    <!-- Mensaje de seguridad -->
+                    <div class="flex items-center justify-center mt-6 text-blue-500 bg-white/10 p-4 rounded-lg">
+                        <i class="fas fa-lock mr-2"></i>
+                        <p class="text-sm">Todas las transacciones son procesadas de forma segura y encriptada.</p>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Component -->
+    <div id="footer-container" class="relative z-20 bg-white"></div>
+
+    <style>
+        .text-shadow-dark {
+            text-shadow: 
+                1px 1px 0 #000,
+                -1px -1px 0 #000,
+                1px -1px 0 #000,
+                -1px 1px 0 #000,
+                0 1px 0 #000,
+                1px 0 0 #000,
+                0 -1px 0 #000,
+                -1px 0 0 #000;
+        }
+
+        @keyframes gift-bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-3px); }
+        }
+
+        .animate-gift {
+            animation: gift-bounce 1.5s ease-in-out infinite;
+        }
+
+        .payment-method {
+            cursor: not-allowed;
+            opacity: 0.6;
+            transition: all 0.3s ease;
+            height: 70px; /* Altura más fina del botón */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.5rem;
+            background: white;
+            border-radius: 0.5rem;
+        }
+
+        .payment-method img {
+            height: 50px; /* Altura más grande de la imagen */
+            width: auto;
+            object-fit: contain;
+        }
+
+        .payment-method.active {
+            cursor: pointer;
+            opacity: 1;
+        }
+
+        .payment-method.active:hover {
+            transform: scale(1.02);
+        }
+
+        @media (max-width: 768px) {
+            .payment-methods-grid {
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+
+    <!-- Scripts -->
+    <script src="js/components/nav.js"></script>
+    <script src="js/components/footer.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const nameInput = document.getElementById('nameInput');
+            const emailInput = document.getElementById('emailInput');
+            const amountInput = document.getElementById('amountInput');
+            const paymentMethods = document.querySelectorAll('.payment-method');
+            const errorMessage = document.getElementById('errorMessage');
+
+            function validateInputs() {
+                const isNameValid = nameInput.value.trim() !== '';
+                const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value);
+                const isAmountValid = amountInput.value > 0;
+
+                if (isNameValid && isEmailValid && isAmountValid) {
+                    paymentMethods.forEach(method => {
+                        method.classList.add('active');
+                    });
+                    errorMessage.style.display = 'none';
+                    return true;
+                } else {
+                    paymentMethods.forEach(method => {
+                        method.classList.remove('active');
+                    });
+                    errorMessage.style.display = 'block';
+                    return false;
+                }
+            }
+
+            // Event listeners para los inputs
+            [nameInput, emailInput, amountInput].forEach(input => {
+                input.addEventListener('input', validateInputs);
+            });
+
+            // Event listeners para los botones de pago
+            paymentMethods.forEach(method => {
+                method.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    if (this.classList.contains('active')) {
+                        const amount = amountInput.value;
+                        const paymentType = this.getAttribute('data-payment-type');
+
+                        if (paymentType === 'mercadopago') {
+                            window.location.href = `pages/mercadoPago.html?amount=${amount}`;
+                        } else if (paymentType === 'bank-transfer') {
+                            window.location.href = `pages/bankTransfer.html?amount=${amount}`;
+                        } else if (paymentType === 'paypal') {
+                            window.location.href = `pages/paypal.html?amount=${amount}`;
+                        } else if (paymentType === 'webpay') {
+                            window.location.href = `pages/webpay.html?amount=${amount}`;
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+    <script src="js/components/DonationProgress.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const donationProgress = new DonationProgress({
+            currentAmount: 15,
+            goalAmount: 1000,
+            currency: 'ARS',
+            containerId: 'donationProgressContainer'
+        });
+    });
+</script>
 </body>
-
-<!-- Agregar los scripts al final del body -->
-<script src="js/components/BankTransferInfo.js"></script>
-<script src="js/components/SecurityInfo.js"></script>
 </html>
