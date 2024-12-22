@@ -59,7 +59,7 @@ class Footer {
                         align-items: center;
                         justify-content: center;
                         transition: all 0.3s;
-                        background: linear-gradient(90deg,rgba(244,0,40,1) 0%,rgba(144,11,31,1) 100%);
+                        background:rgba(144,11,31,1) 100%;
                         box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
                         border: 1px solid rgba(255, 255, 255, 0.2);
                     }
