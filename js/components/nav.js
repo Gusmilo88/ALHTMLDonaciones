@@ -136,7 +136,7 @@ class Nav {
                     .hamburger-line-2.active { opacity: 0; }
                     .hamburger-line-3.active { transform: rotate(-45deg) translate(5px, -5px); }
 
-                    .christmas-lights-top {
+                    /* .christmas-lights-top {
                         position: absolute;
                         top: 0;
                         left: 0;
@@ -153,7 +153,7 @@ class Nav {
                         background-size: 200% 100%;
                         animation: lightsMovement 2s linear infinite;
                         box-shadow: 0 0 10px rgba(255,255,255,0.8);
-                    }
+                    } */
 
                     @keyframes lightsMovement {
                         0% { background-position: 0% 50%; }
