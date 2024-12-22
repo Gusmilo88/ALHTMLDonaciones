@@ -30,11 +30,11 @@ class DonationProgress {
                     <div class="mb-6 flex justify-center"></div>
 
                     <h2 class="text-2xl font-bold mb-4 text-white text-shadow-dark">Meta de Donaciones</h2>
-                    <p class="text-4xl font-bold mb-2 text-green-600">
+                    <p class="text-4xl font-bold mb-2 text-600" style="color:rgb(255, 204, 0);">
                         ${this.formatCurrency(this.currentAmount)}
                     </p>
                     <p class="text-white text-shadow-dark mb-4">
-                        recaudado de <span class="font-semibold text-green-600">${this.formatCurrency(this.goalAmount)}</span>
+                        recaudado de <span class="font-semibold text-600" style="color:rgb(255, 204, 0);">${this.formatCurrency(this.goalAmount)}</span>
                     </p>
 
                     <div class="relative flex items-center gap-4">
