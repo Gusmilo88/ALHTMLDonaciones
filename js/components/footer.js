@@ -114,7 +114,7 @@ class Footer {
 
     updateCopyright() {
         const copyrightElement = document.getElementById('footerCopyright');
-        copyrightElement.textContent = `© ${new Date().getFullYear()} Todos los derechos reservados`;
+        copyrightElement.textContent = `© ${new Date().getFullYear()} Animal Libre todos los derechos reservados.`;
     }
 
     init() {
