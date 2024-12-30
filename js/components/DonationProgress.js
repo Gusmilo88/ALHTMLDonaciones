@@ -1,4 +1,4 @@
-class DonationProgress {
+    class DonationProgress {
     constructor(options = {}) {
         this.currentAmount = options.currentAmount || 15;
         this.goalAmount = options.goalAmount || 1000;
