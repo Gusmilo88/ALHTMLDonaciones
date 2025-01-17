@@ -18,7 +18,7 @@ class Nav {
                     <div class="flex items-center h-32"> 
                         <div class="flex-shrink-0"> 
                             <a href="/">
-                                <img src="/assets/logoALNavidad.png" alt="Logo" class="object-contain w-full max-w-[350px] h-auto"/>
+                                <img src="/assets/logoAL.png" alt="Logo de Animal Libre" class="object-contain w-full max-w-[350px] h-auto"/>
                             </a>
                         </div>
                         

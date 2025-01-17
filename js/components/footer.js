@@ -26,7 +26,7 @@ class Footer {
                         <!-- Logo -->
                         <div class="flex flex-col items-center md:items-start">
                             <a href="/">
-                                <img src="../assets/logoALNavidad.png" alt="Logo" 
+                                <img src="../assets/logoAL.png" alt="Logo" 
                                     class="object-contain w-full max-w-[200px] h-auto mb-4">
                             </a>
                         </div>
