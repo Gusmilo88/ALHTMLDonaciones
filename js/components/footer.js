@@ -114,7 +114,7 @@ class Footer {
 
     updateCopyright() {
         const copyrightElement = document.getElementById('footerCopyright');
-        copyrightElement.textContent = `© ${new Date().getFullYear()} Animal Libre todos los derechos reservados.`;
+        copyrightElement.innerHTML = `© ${new Date().getFullYear()} Animal Libre todos los derechos reservados. | Powered by <a href="https://supernovawebs.com.ar/" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-gray-800">Supernova Web Design</a>`;
     }
 
     init() {

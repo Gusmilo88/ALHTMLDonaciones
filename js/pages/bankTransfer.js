@@ -2,6 +2,7 @@ class BankTransferPage {
     constructor() {
         this.bankInfo = [
             { icon: "🏦", label: "Banco", value: "Banco Santander", copyable: false },
+            { icon: "🆔", label: "Rut de la organización", value: "65.082.561-6", copyable: true },
             { icon: "🔢", label: "Número de Cuenta", value: "000069708625", copyable: true },
             { icon: "👤", label: "Titular de la Cuenta", value: "ONG Animal Libre", copyable: false },
             { icon: "✉️", label: "SWIFT", value: "BSCHCLRM", copyable: true }
